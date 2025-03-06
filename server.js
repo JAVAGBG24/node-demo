@@ -18,6 +18,8 @@ mongoose
   .catch((err) => console.log("MongoDB connection error:", err));
 
 // import routes
+const productRoutes = require("./routes/product");
+const orderRoutes = require("./routes/order");
 
 // middlewares
 if (process.env.NODE_ENV === "development") {
@@ -30,6 +32,8 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 // route middleware
+app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
 
 // test route
 app.get("/api/hello/", (req, res) => {
